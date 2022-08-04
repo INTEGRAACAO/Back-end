@@ -1,4 +1,4 @@
-package com.gen.model;
+package com.gen.ProjetoIntegrador.model;
 
 import java.time.LocalDateTime;
 

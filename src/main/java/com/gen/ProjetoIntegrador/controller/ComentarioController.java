@@ -1,10 +1,11 @@
-package com.gen.controller;
+package com.gen.ProjetoIntegrador.controller;
 
 import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
+import com.gen.ProjetoIntegrador.model.Comentario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +21,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.gen.model.Comentario;
-import com.gen.repository.ComentarioRepository;
+import com.gen.ProjetoIntegrador.repository.ComentarioRepository;
 
 @RestController
 @RequestMapping ("/comentarios")
