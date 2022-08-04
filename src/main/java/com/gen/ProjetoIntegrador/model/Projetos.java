@@ -27,7 +27,7 @@ public class Projetos {
 	@Size(min = 3, max = 255)
 	private String apoios;
 	
-	private String nome_projeto;
+	private String nome;
 	
 	private String link_imagem;
 	
@@ -57,11 +57,11 @@ public class Projetos {
 	}
 
 	public String getNome_projeto() {
-		return nome_projeto;
+		return nome;
 	}
 
-	public void setNome_projeto(String nome_projeto) {
-		this.nome_projeto = nome_projeto;
+	public void setNome_projeto(String nome) {
+		this.nome = nome;
 	}
 
 	public String getLink_imagem() {
