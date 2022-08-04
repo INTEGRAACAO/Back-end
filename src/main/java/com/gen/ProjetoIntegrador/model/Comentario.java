@@ -1,4 +1,4 @@
-package com.gen.model;
+package com.gen.ProjetoIntegrador.model;
 
 import java.time.LocalDateTime;
 
@@ -16,7 +16,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "comentario")
+@Table(name = "tb_comentario")
 public class Comentario {
 
 	@Id

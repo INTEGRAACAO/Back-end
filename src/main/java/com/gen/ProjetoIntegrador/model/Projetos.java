@@ -1,4 +1,4 @@
-package com.gen.model;
+package com.gen.ProjetoIntegrador.model;
 
 import java.time.LocalDateTime;
 
@@ -16,7 +16,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "projetos")
+@Table(name = "tb_projetos")
 public class Projetos {
 	
 	@Id
