@@ -43,7 +43,8 @@ public class ProjetosController {
 	
 	@GetMapping("/projeto/{nome_projeto}")
 	public ResponseEntity<List<Projetos>>getByNome(@PathVariable String nome_projeto){
-		return ResponseEntity.ok(projetosRepository.findAlByNomeContainingIgnoreCase(nome_projeto));
+
+		return ResponseEntity.ok(projetosRepository.findAllByNomeContainingIgnoreCase(nome_projeto));
 	}
 	
 	@PostMapping
