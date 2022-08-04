@@ -1,0 +1,11 @@
+{
+		"nome": "NOME 2",
+		"email": "EMAIL 2",
+		"apelido": "APELIDO 2",
+		"senha": "SENHA 2",
+		"link_foto": "LINK_FOTO 2",
+		"bio": "BIO 2",
+		"tipo_acesso": "TIPO-ACESSO 2",
+		"data_nascimento": "2022-01-01 00:00:00",
+		"data_cadastro": null
+	}
