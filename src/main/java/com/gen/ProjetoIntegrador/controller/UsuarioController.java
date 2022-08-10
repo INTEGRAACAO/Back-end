@@ -51,11 +51,13 @@ public class UsuarioController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(usuario));
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<Usuario> put(@PathVariable Long id, @Valid @RequestBody Usuario usuario){
-		return usuarioRepository.findById(id).map(resposta -> ResponseEntity.status(HttpStatus.OK)
-				.body(usuarioRepository.save(usuario))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build()); 
-	}
+	@PutMapping
+	public ResponseEntity<Usuario> put(@Valid @RequestBody Usuario usuario){
+        return usuarioRepository.findById(usuario.getId())
+        		.map(resposta -> ResponseEntity.status(HttpStatus.OK)
+        		.body(usuarioRepository.save(usuario)))
+        		.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
