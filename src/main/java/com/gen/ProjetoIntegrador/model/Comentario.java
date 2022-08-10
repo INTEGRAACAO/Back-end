@@ -36,7 +36,7 @@ public class Comentario {
 	private String comentario;
 	
 	@UpdateTimestamp
-	private LocalDateTime data_comentario;
+	private LocalDateTime dataComentario;
 
 	public Long getComentarioID() {
 		return comentarioID;
@@ -70,11 +70,11 @@ public class Comentario {
 		this.comentario = comentario;
 	}
 
-	public LocalDateTime getData_comentario() {
-		return data_comentario;
+	public LocalDateTime getDataComentario() {
+		return dataComentario;
 	}
 
-	public void setData_comentario(LocalDateTime data_comentario) {
-		this.data_comentario = data_comentario;
+	public void setDataComentario(LocalDateTime dataComentario) {
+		this.dataComentario = dataComentario;
 	}
 }
