@@ -21,7 +21,7 @@ public class Comentario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long comentarioID;
+	private Long id;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("Comentario")
@@ -36,14 +36,14 @@ public class Comentario {
 	private String comentario;
 	
 	@UpdateTimestamp
-	private LocalDateTime data_comentario;
+	private LocalDateTime dataComentario;
 
-	public Long getComentarioID() {
-		return comentarioID;
+	public Long getId() {
+		return id;
 	}
 
-	public void setComentarioID(Long comentarioID) {
-		this.comentarioID = comentarioID;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Usuario getUsuario() {
@@ -70,11 +70,11 @@ public class Comentario {
 		this.comentario = comentario;
 	}
 
-	public LocalDateTime getData_comentario() {
-		return data_comentario;
+	public LocalDateTime getDataComentario() {
+		return dataComentario;
 	}
 
-	public void setData_comentario(LocalDateTime data_comentario) {
-		this.data_comentario = data_comentario;
+	public void setDataComentario(LocalDateTime dataComentario) {
+		this.dataComentario = dataComentario;
 	}
 }

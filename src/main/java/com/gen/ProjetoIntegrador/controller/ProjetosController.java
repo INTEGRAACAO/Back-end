@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import com.gen.ProjetoIntegrador.model.Projetos;
+import com.gen.ProjetoIntegrador.model.Usuario;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,11 +54,13 @@ public class ProjetosController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(projetosRepository.save(projetos));
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<Projetos>put(@PathVariable Long id,@Valid @RequestBody Projetos projetos){
-		return projetosRepository.findById(id).map(resposta -> ResponseEntity.status(HttpStatus.OK)
-				.body(projetosRepository.save(projetos))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-	}
+	@PutMapping
+	public ResponseEntity<Projetos>put(@Valid @RequestBody Projetos projetos){
+        return projetosRepository.findById(projetos.getId())
+        		.map(resposta -> ResponseEntity.status(HttpStatus.OK)
+        		.body(projetosRepository.save(projetos)))
+        		.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
