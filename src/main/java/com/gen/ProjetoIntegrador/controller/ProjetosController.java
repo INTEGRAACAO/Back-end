@@ -41,7 +41,11 @@ public class ProjetosController {
 		return projetosRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta)).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build()); 
 	}
 	
+	@GetMapping("/projeto/{nome_projeto}")
+	public ResponseEntity<List<Projetos>>getByNome(@PathVariable String nome_projeto){
 
+		return ResponseEntity.ok(projetosRepository.findAllByNomeContainingIgnoreCase(nome_projeto));
+	}
 	
 	@PostMapping
 	public ResponseEntity<Projetos>post(@Valid @RequestBody Projetos projetos){
