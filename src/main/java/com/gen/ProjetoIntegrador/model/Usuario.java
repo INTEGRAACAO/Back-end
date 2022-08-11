@@ -1,21 +1,29 @@
 package com.gen.ProjetoIntegrador.model;
 
-import org.hibernate.annotations.UpdateTimestamp;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -34,6 +42,7 @@ public class Usuario {
 	@Size(min = 8, max = 128, message = "A senha deve conter no mínimo 8 caracteres")
 	private String senha;
 
+	@Size(max = 255)
 	private String linkFoto;
 
 	@Size(min = 1, max = 255, message = "A biografia deve conter no mínimo 1 e no máximo 255 caracteres")
@@ -43,7 +52,7 @@ public class Usuario {
 	private String tipoAcesso;
 
 	@NotNull
-	private Date dataNascimento;
+	private LocalDate dataNascimento;
 
 	@UpdateTimestamp
 	private LocalDateTime dataCadastro;
@@ -120,12 +129,28 @@ public class Usuario {
 		this.tipoAcesso = tipoAcesso;
 	}
 
-	public Date getDataNascimento() {
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+
+	public List<Comentario> getComentario() {
+		return comentario;
+	}
+
+	public void setComentario(List<Comentario> comentario) {
+		this.comentario = comentario;
+	}
+
+	public List<Projetos> getProjetos() {
+		return projetos;
+	}
+
+	public void setProjetos(List<Projetos> projetos) {
+		this.projetos = projetos;
 	}
 
 	public LocalDateTime getDataCadastro() {
