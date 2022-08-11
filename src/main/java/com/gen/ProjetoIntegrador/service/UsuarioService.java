@@ -7,11 +7,14 @@ import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.gen.ProjetoIntegrador.model.Usuario;
+import com.gen.ProjetoIntegrador.model.UsuarioLogin;
 import com.gen.ProjetoIntegrador.repository.UsuarioRepository;
 
+@Service
 public class UsuarioService {
 
 	@Autowired
@@ -58,6 +61,7 @@ public class UsuarioService {
 				usuarioLogin.get().setId(usuario.get().getId());
 				usuarioLogin.get().setNome(usuario.get().getNome());
 				usuarioLogin.get().setEmail(usuario.get().getEmail());
+				usuarioLogin.get().setApelido(usuario.get().getApelido());
 				usuarioLogin.get().setLinkFoto(usuario.get().getLinkFoto());
 				usuarioLogin.get()
 						.setToken(gerarBasicToken(usuarioLogin.get().getApelido(), usuarioLogin.get().getSenha()));
