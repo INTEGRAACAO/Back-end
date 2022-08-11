@@ -1,12 +1,18 @@
 package com.gen.ProjetoIntegrador.model;
 
-import org.hibernate.annotations.UpdateTimestamp;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "usuarios")
@@ -24,7 +30,7 @@ public class Usuario {
   private String bio;
   private String tipo_acesso;
   @NotNull
-  private Date data_nascimento;
+  private LocalDate data_nascimento;
   @UpdateTimestamp
   private LocalDateTime data_cadastro;
 
@@ -92,15 +98,15 @@ public class Usuario {
     this.tipo_acesso = tipo_acesso;
   }
 
-  public Date getData_nascimento() {
-    return data_nascimento;
-  }
+  public LocalDate getData_nascimento() {
+	return data_nascimento;
+}
 
-  public void setData_nascimento(Date data_nascimento) {
-    this.data_nascimento = data_nascimento;
-  }
+public void setData_nascimento(LocalDate data_nascimento) {
+	this.data_nascimento = data_nascimento;
+}
 
-  public LocalDateTime getData_cadastro() {
+public LocalDateTime getData_cadastro() {
     return data_cadastro;
   }
 
