@@ -1,57 +1,32 @@
 package com.gen.ProjetoIntegrador.model;
 
-<<<<<<< HEAD
 import java.time.LocalDate;
-=======
-import org.hibernate.annotations.UpdateTimestamp;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
->>>>>>> f4f8acb3bfea1783939215ba92c8e917b0e1bd89
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
-<<<<<<< HEAD
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-  @NotNull
-  @Size(min = 3, max = 125)
-  private String nome;
-  private String email;
-  private String apelido;
-  private String senha;
-  private String link_foto;
-  private String bio;
-  private String tipo_acesso;
-  @NotNull
-  private LocalDate data_nascimento;
-  @UpdateTimestamp
-  private LocalDateTime data_cadastro;
-=======
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
->>>>>>> f4f8acb3bfea1783939215ba92c8e917b0e1bd89
 
 	@NotNull
 	@Size(min = 2, max = 125, message = "O nome deve conter no mínimo 2 e no máximo 125 caracteres")
@@ -67,6 +42,7 @@ public class Usuario {
 	@Size(min = 8, max = 128, message = "A senha deve conter no mínimo 8 caracteres")
 	private String senha;
 
+	@Size(max = 255)
 	private String linkFoto;
 
 	@Size(min = 1, max = 255, message = "A biografia deve conter no mínimo 1 e no máximo 255 caracteres")
@@ -76,7 +52,7 @@ public class Usuario {
 	private String tipoAcesso;
 
 	@NotNull
-	private Date dataNascimento;
+	private LocalDate dataNascimento;
 
 	@UpdateTimestamp
 	private LocalDateTime dataCadastro;
@@ -117,19 +93,6 @@ public class Usuario {
 		return apelido;
 	}
 
-<<<<<<< HEAD
-  public LocalDate getData_nascimento() {
-	return data_nascimento;
-}
-
-public void setData_nascimento(LocalDate data_nascimento) {
-	this.data_nascimento = data_nascimento;
-}
-
-public LocalDateTime getData_cadastro() {
-    return data_cadastro;
-  }
-=======
 	public void setApelido(String apelido) {
 		this.apelido = apelido;
 	}
@@ -166,12 +129,28 @@ public LocalDateTime getData_cadastro() {
 		this.tipoAcesso = tipoAcesso;
 	}
 
-	public Date getDataNascimento() {
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+
+	public List<Comentario> getComentario() {
+		return comentario;
+	}
+
+	public void setComentario(List<Comentario> comentario) {
+		this.comentario = comentario;
+	}
+
+	public List<Projetos> getProjetos() {
+		return projetos;
+	}
+
+	public void setProjetos(List<Projetos> projetos) {
+		this.projetos = projetos;
 	}
 
 	public LocalDateTime getDataCadastro() {
@@ -181,6 +160,5 @@ public LocalDateTime getData_cadastro() {
 	public void setDataCadastro(LocalDateTime dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
->>>>>>> f4f8acb3bfea1783939215ba92c8e917b0e1bd89
 
 }
