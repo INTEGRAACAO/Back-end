@@ -1,12 +1,15 @@
 package com.gen.ProjetoIntegrador.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -21,30 +24,45 @@ public class Projetos {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@NotBlank
-	@Size(min = 3, max = 255)
 	private String apoios;
 	
+	@NotBlank
+	@Size(min = 2, max = 100, message = "Deve conter no mínimo 2 caracteres e no máximo 100")
 	private String nome;
 	
-	private String link_imagem;
+	@Size(min = 1, max = 255)
+	private String linkImagem;
 	
+	@Size(min = 1, max = 255, message = "Deve conter no mínimo 1 caracter e no máximo 255")
 	private String descricao;
 	
 	@UpdateTimestamp
-	private LocalDateTime data_projeto;
+	private LocalDateTime dataProjeto;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("Projetos")
+	@JsonIgnoreProperties("projetos")
 	private Usuario usuario;
+	
+	@OneToMany (mappedBy = "projetos", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("projetos")
+	private List<Comentario> comentario;
 
-	public long getId() {
+	public List<Comentario> getComentario() {
+		return comentario;
+	}
+
+	public void setComentario(List<Comentario> comentario) {
+		this.comentario = comentario;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -56,20 +74,20 @@ public class Projetos {
 		this.apoios = apoios;
 	}
 
-	public String getNome_projeto() {
+	public String getNome() {
 		return nome;
 	}
 
-	public void setNome_projeto(String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public String getLink_imagem() {
-		return link_imagem;
+	public String getLinkImagem() {
+		return linkImagem;
 	}
 
-	public void setLink_imagem(String link_imagem) {
-		this.link_imagem = link_imagem;
+	public void setLinkImagem(String linkImagem) {
+		this.linkImagem = linkImagem;
 	}
 
 	public String getDescricao() {
@@ -80,12 +98,12 @@ public class Projetos {
 		this.descricao = descricao;
 	}
 
-	public LocalDateTime getData_projeto() {
-		return data_projeto;
+	public LocalDateTime getDataProjeto() {
+		return dataProjeto;
 	}
 
-	public void setData_projeto(LocalDateTime data_projeto) {
-		this.data_projeto = data_projeto;
+	public void setDataProjeto(LocalDateTime dataProjeto) {
+		this.dataProjeto = dataProjeto;
 	}
 
 	public Usuario getUsuario() {

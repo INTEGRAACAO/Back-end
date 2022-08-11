@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import com.gen.ProjetoIntegrador.model.Comentario;
+import com.gen.ProjetoIntegrador.model.Usuario;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,11 +54,13 @@ public class ComentarioController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(comentarioRepository.save(comentario));
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<Comentario> put (@PathVariable Long id, @Valid @RequestBody Comentario comentario){
-		return comentarioRepository.findById(id).map(resposta -> ResponseEntity.status(HttpStatus.OK).body(comentarioRepository.save(comentario)))
-				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-	}
+	@PutMapping
+	public ResponseEntity<Comentario> put (@Valid @RequestBody Comentario comentario){
+        return comentarioRepository.findById(comentario.getId())
+        		.map(resposta -> ResponseEntity.status(HttpStatus.OK)
+        		.body(comentarioRepository.save(comentario)))
+        		.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")

@@ -1,8 +1,20 @@
 package com.gen.ProjetoIntegrador.model;
 
+<<<<<<< HEAD
 import java.time.LocalDate;
+=======
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+>>>>>>> f4f8acb3bfea1783939215ba92c8e917b0e1bd89
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +29,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
+<<<<<<< HEAD
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -33,71 +46,78 @@ public class Usuario {
   private LocalDate data_nascimento;
   @UpdateTimestamp
   private LocalDateTime data_cadastro;
+=======
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+>>>>>>> f4f8acb3bfea1783939215ba92c8e917b0e1bd89
 
-  public Long getId() {
-    return id;
-  }
+	@NotNull
+	@Size(min = 2, max = 125, message = "O nome deve conter no mínimo 2 e no máximo 125 caracteres")
+	private String nome;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	@Email
+	private String email;
 
-  public String getNome() {
-    return nome;
-  }
+	@Size(min = 2, max = 125, message = "O nickname deve conter no mínimo 2 e no máximo 125 caracteres")
+	private String apelido;
 
-  public void setNome(String nome) {
-    this.nome = nome;
-  }
+	@NotNull
+	@Size(min = 8, max = 128, message = "A senha deve conter no mínimo 8 caracteres")
+	private String senha;
 
-  public String getEmail() {
-    return email;
-  }
+	private String linkFoto;
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+	@Size(min = 1, max = 255, message = "A biografia deve conter no mínimo 1 e no máximo 255 caracteres")
+	private String bio;
 
-  public String getApelido() {
-    return apelido;
-  }
+	@NotNull
+	private String tipoAcesso;
 
-  public void setApelido(String apelido) {
-    this.apelido = apelido;
-  }
+	@NotNull
+	private Date dataNascimento;
 
-  public String getSenha() {
-    return senha;
-  }
+	@UpdateTimestamp
+	private LocalDateTime dataCadastro;
+	
+	@OneToMany (mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("usuario")
+	private List<Comentario> comentario;
+	
+	@OneToMany (mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("usuario")
+	private List<Projetos> projetos;
 
-  public void setSenha(String senha) {
-    this.senha = senha;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public String getLink_foto() {
-    return link_foto;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public void setLink_foto(String link_foto) {
-    this.link_foto = link_foto;
-  }
+	public String getNome() {
+		return nome;
+	}
 
-  public String getBio() {
-    return bio;
-  }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-  public void setBio(String bio) {
-    this.bio = bio;
-  }
+	public String getEmail() {
+		return email;
+	}
 
-  public String getTipo_acesso() {
-    return tipo_acesso;
-  }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-  public void setTipo_acesso(String tipo_acesso) {
-    this.tipo_acesso = tipo_acesso;
-  }
+	public String getApelido() {
+		return apelido;
+	}
 
+<<<<<<< HEAD
   public LocalDate getData_nascimento() {
 	return data_nascimento;
 }
@@ -109,8 +129,58 @@ public void setData_nascimento(LocalDate data_nascimento) {
 public LocalDateTime getData_cadastro() {
     return data_cadastro;
   }
+=======
+	public void setApelido(String apelido) {
+		this.apelido = apelido;
+	}
 
-  public void setData_cadastro(LocalDateTime data_cadastro) {
-    this.data_cadastro = data_cadastro;
-  }
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getLinkFoto() {
+		return linkFoto;
+	}
+
+	public void setLinkFoto(String linkFoto) {
+		this.linkFoto = linkFoto;
+	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	public String getTipoAcesso() {
+		return tipoAcesso;
+	}
+
+	public void setTipoAcesso(String tipoAcesso) {
+		this.tipoAcesso = tipoAcesso;
+	}
+
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public LocalDateTime getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalDateTime dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+>>>>>>> f4f8acb3bfea1783939215ba92c8e917b0e1bd89
+
 }
