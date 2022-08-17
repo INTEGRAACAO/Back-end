@@ -2,7 +2,6 @@ package com.gen.ProjetoIntegrador.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,6 +19,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -31,10 +32,12 @@ public class Usuario {
 	@NotNull
 	@Size(min = 2, max = 125, message = "O nome deve conter no mínimo 2 e no máximo 125 caracteres")
 	private String nome;
-
+	
+	@Schema(example = "email@email.com.br")
 	@Email
 	private String email;
-
+	
+	@NotNull(message = "O atributo Usuário é Obrigatório!")
 	@Size(min = 2, max = 125, message = "O nickname deve conter no mínimo 2 e no máximo 125 caracteres")
 	private String apelido;
 
