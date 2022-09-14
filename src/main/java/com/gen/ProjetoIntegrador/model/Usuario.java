@@ -62,10 +62,6 @@ public class Usuario {
 	
 	@OneToMany (mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
-	private List<Comentario> comentario;
-	
-	@OneToMany (mappedBy = "usuario", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("usuario")
 	private List<Projetos> projetos;
 
 	public Long getId() {
@@ -138,14 +134,6 @@ public class Usuario {
 
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
-	}
-
-	public List<Comentario> getComentario() {
-		return comentario;
-	}
-
-	public void setComentario(List<Comentario> comentario) {
-		this.comentario = comentario;
 	}
 
 	public List<Projetos> getProjetos() {
