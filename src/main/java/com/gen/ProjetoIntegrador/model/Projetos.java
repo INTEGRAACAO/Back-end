@@ -1,15 +1,11 @@
 package com.gen.ProjetoIntegrador.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -46,17 +42,9 @@ public class Projetos {
 	@JsonIgnoreProperties("projetos")
 	private Usuario usuario;
 	
-	@OneToMany (mappedBy = "projetos", cascade = CascadeType.REMOVE)
+	@ManyToOne 
 	@JsonIgnoreProperties("projetos")
-	private List<Comentario> comentario;
-
-	public List<Comentario> getComentario() {
-		return comentario;
-	}
-
-	public void setComentario(List<Comentario> comentario) {
-		this.comentario = comentario;
-	}
+	private Temas temas;
 
 	public Long getId() {
 		return id;
@@ -113,5 +101,14 @@ public class Projetos {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public Temas getTemas() {
+		return temas;
+	}
+
+	public void setTemas(Temas temas) {
+		this.temas = temas;
+	}
+
 
 }

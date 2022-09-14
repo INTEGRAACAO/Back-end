@@ -5,9 +5,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import com.gen.ProjetoIntegrador.model.Comentario;
-import com.gen.ProjetoIntegrador.model.Usuario;
-
+import com.gen.ProjetoIntegrador.model.Temas;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,52 +21,52 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.gen.ProjetoIntegrador.repository.ComentarioRepository;
+import com.gen.ProjetoIntegrador.repository.TemasRepository;
 
 @RestController
-@RequestMapping ("/comentarios")
+@RequestMapping ("/temas")
 @CrossOrigin (origins = "*", allowedHeaders = "*")
-public class ComentarioController {
+public class TemasController {
 
 	@Autowired
-	private ComentarioRepository comentarioRepository;
+	private TemasRepository temasRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<Comentario>> getAll(){
-		return ResponseEntity.ok(comentarioRepository.findAll());
+	public ResponseEntity<List<Temas>> getAll(){
+		return ResponseEntity.ok(temasRepository.findAll());
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Comentario> getById(@PathVariable Long id){
-		return comentarioRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
+	public ResponseEntity<Temas> getById(@PathVariable Long id){
+		return temasRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
-	@GetMapping("/comentario/{comentario}")
-	public ResponseEntity <List<Comentario>> getByComentario(@PathVariable String comentario){
-		return ResponseEntity.ok(comentarioRepository.findAllByComentarioContainingIgnoreCase(comentario));
+	@GetMapping("/temas/{temas}")
+	public ResponseEntity <List<Temas>> getByTemas (@PathVariable String temas){
+		return ResponseEntity.ok(temasRepository.findAllByTemasContainingIgnoreCase(temas));
 	}
 	
 	@PostMapping
-	public ResponseEntity<Comentario> post (@Valid @RequestBody Comentario comentario){
-		return ResponseEntity.status(HttpStatus.CREATED).body(comentarioRepository.save(comentario));
+	public ResponseEntity<Temas> post (@Valid @RequestBody Temas temas){
+		return ResponseEntity.status(HttpStatus.CREATED).body(temasRepository.save(temas));
 	}
 	
 	@PutMapping
-	public ResponseEntity<Comentario> put (@Valid @RequestBody Comentario comentario){
-        return comentarioRepository.findById(comentario.getId())
+	public ResponseEntity<Temas> put (@Valid @RequestBody Temas temas){
+        return temasRepository.findById(temas.getId())
         		.map(resposta -> ResponseEntity.status(HttpStatus.OK)
-        		.body(comentarioRepository.save(comentario)))
+        		.body(temasRepository.save(temas)))
         		.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		Optional<Comentario> comentario = comentarioRepository.findById(id);
+		Optional<Temas> temas = temasRepository.findById(id);
 		
-		if(comentario.isEmpty())
+		if(temas.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-		comentarioRepository.deleteById(id);
+		temasRepository.deleteById(id);
 	}
 }
