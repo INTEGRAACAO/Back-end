@@ -22,17 +22,17 @@ public class Projetos {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank
+	@Size(max = 255)
 	private String apoios;
 	
 	@NotBlank
 	@Size(min = 2, max = 100, message = "Deve conter no mínimo 2 caracteres e no máximo 100")
 	private String nome;
 	
-	@Size(min = 1, max = 255)
+	@Size(min = 1, max = 500)
 	private String linkImagem;
 	
-	@Size(min = 1, max = 255, message = "Deve conter no mínimo 1 caracter e no máximo 255")
+	@Size(min = 1, max = 3000, message = "Deve conter no mínimo 1 caracter e no máximo 2000")
 	private String descricao;
 	
 	@UpdateTimestamp
