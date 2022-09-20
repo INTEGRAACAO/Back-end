@@ -45,10 +45,10 @@ public class Usuario {
 	@Size(min = 8, max = 128, message = "A senha deve conter no mínimo 8 caracteres")
 	private String senha;
 
-	@Size(max = 255)
+	@Size(max = 500)
 	private String linkFoto;
 
-	@Size(min = 1, max = 255, message = "A biografia deve conter no mínimo 1 e no máximo 255 caracteres")
+	@Size(min = 1, max = 2000, message = "A biografia deve conter no mínimo 1 e no máximo 255 caracteres")
 	private String bio;
 
 	@NotNull
